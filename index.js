@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Parser = require('rss-parser');
 const { exec } = require('child_process');
+require('dotenv').config();
 
 const webhook = process.env.WEBHOOK_URL
 
