@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+*.rss
+username_*.txt
+nitter-rss-linux*
+accounts.txt
