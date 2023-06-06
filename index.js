@@ -11,12 +11,12 @@ const ACCOUNTS = fs.readFileSync("accounts.txt").toString().split("\n")
 const checkInterval = 5 * 61 * 1000; // 5 minutes and 5 seconds
 const sentIdsMap = new Map();
 
-const sendLinkToDiscord = async (link) => {
+const sendLinkToDiscord = async (link, username) => {
   try {
     const response = await fetch(webhook, {
       method: 'POST',
       body: JSON.stringify({
-        "content": link,
+        "content": `${link} - ${username}`,
         "embeds": null,
         "attachments": []
       }),
@@ -84,7 +84,7 @@ const processAccount = async (account) => {
         }
         const sentIds = sentIdsMap.get(account);
         if (!sentIds.has(id)) {
-          sendLinkToDiscord(item.link);
+          sendLinkToDiscord(item.link, account);
           sentIds.add(id);
           lastId = id;
         }
